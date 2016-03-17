@@ -1,0 +1,67 @@
+//
+// Book A Space
+// Copyright 2015.
+// Please see LICENSE for terms of use.
+//
+// This component provides the site layout for use with Jade.
+
+doctype html
+html(ng-app="bookaspace")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    title .: Book A Space
+    base(href='/')
+    link(rel='stylesheet', href='javascripts/vendor/bootstrap-css/css/bootstrap.min.css')
+    link(rel='stylesheet', href='javascripts/vendor/bootstrap-css/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body(ng-controller="appctrl")
+    div.container(ng-controller="loginCtrl")
+      nav(class="navbar navbar-default navbar-fixed-top")
+          div.navbar-header
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a(class="navbar-brand" href="/") Book a Space
+
+          div(id="navbar" class="navbar-collapse collapse")
+            ul(class="nav navbar-nav")
+              li(ng-hide="userMenu")
+                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" disbled) {{currentUser}}
+                  span.caret
+                ul(class="dropdown-menu" role="menu")
+                  li 
+                    a(href="/myreservations") My Reservations
+              li
+                a(href="/findaspace") Find a Space 
+              li(class="dropdown" ng-hide="userMenu")
+                a(class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" disbled) Administration 
+                  span.caret
+                ul(class="dropdown-menu" role="menu")
+                  li 
+                    a(href="/workspaceadmin") Workspaces
+                  li 
+                    a(href="/reservationadmin") Reservations
+            ul(class="nav navbar-nav navbar-right")
+              li
+                a(href="/login" id="layout_login" ng-click='activeLogin()' ) {{loginState}}
+              li
+                a(href="/policy") Policies & Conditions
+
+      ng-view
+  
+  script(src='javascripts/vendor/jquery/jquery.min.js')
+  script(src='javascripts/vendor/bootstrap-javascript/bootstrap.js')
+  script(src='javascripts/vendor/angular/angular.js')
+  script(src='javascripts/controllers.js')
+  script(src='javascripts/app.js')
+  script(src='javascripts/services.js')
+  script(src='javascripts/filters.js')
+  script(src='javascripts/directives.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js')
+  script(src='javascripts/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')

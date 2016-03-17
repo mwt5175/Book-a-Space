@@ -1,0 +1,18 @@
+body {
+  min-height: 1000px;
+  padding-top: 70px;
+  background: #0099CC
+}
+
+.receipt-head {
+	margin-top: 20px;
+	margin-bottom: 150px;
+}
+
+.receipt-body {
+	margin-bottom: 100px;
+}
+
+#spacedBtn {
+	margin: 2px;
+}

@@ -1,0 +1,126 @@
+div(class="panel panel-default")
+  div.panel-heading
+    h2.panel-title Booking
+  div.panel-body
+    div(class="panel panel-default")
+      div.panel-heading
+        | <h3 class="panel-title">{{workspace._id}}<span class="pull-right panel-title">{{workspace.type}}</span></h3>
+      div.panel-body
+        div.row
+          div.col-sm-4
+            div.list-group
+              a.list-group-item
+                h4.list-group-item-heading <strong>Agency</strong>
+                p.list-group-item-text {{workspace.agency}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Building</strong>
+                p.list-group-item-text {{workspace.building}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Floor</strong>
+                p.list-group-item-text {{workspace.floor}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Room</strong>
+                p.list-group-item-text {{workspace.room}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Type</strong>
+                p.list-group-item-text {{workspace.type}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Size</strong>
+                p.list-group-item-text {{workspace.size}}
+
+          div.col-sm-4
+            div.list-group
+              a.list-group-item
+                h4.list-group-item-heading <strong>AM Rate</strong>
+                p.list-group-item-text {{workspace.amRate | currency}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>PM Rate</strong>
+                p.list-group-item-text {{workspace.pmRate | currency}}
+
+          div.col-sm-4
+            div.list-group
+              a(class="list-group-item list-group-item")
+                h4.list-group-item-heading <strong>Inventory</strong>
+              a(class="list-group-item" ng-repeat="item in workspace.inventory")
+                p(class="list-group-item-text") {{item}}
+    div(class="panel panel-default")
+      div.panel-heading
+        h4.panel-title Parking
+      div(class="panel-body row")
+        div(class="btn-group col-md-4")
+          button(type="button" class="btn btn-success" ng-model="reservation.parking" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0") Purchase Parking Token(+$10)
+
+
+    div(class="panel panel-default")
+      div.panel-heading
+        h4.panel-title My Information
+      div.panel-body
+        form
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="name") Name:
+                input(type="text" class="form-control" id="name" placeholder="Name" ng-model="reservation.reserverName")
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="agency") Agency:
+                input(type="text" class="form-control" id="agency" placeholder="Agency" ng-model="reservation.agency")
+
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="email") Email:
+                input(type="email" class="form-control" id="email" placeholder="Email" ng-model="reservation.reserverEmail")
+
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="glcode") GL Code:
+                input(type="text" class="form-control" id="glcode" placeholder="GL Code" value="6351500" readonly)
+
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="sapfund") SAP Fund:
+                input(type="text" class="form-control" id="sapfund" placeholder="SAP Fund" ng-model="reservation.sapFund")
+
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="costcenter") Cost Center:
+                input(type="text" class="form-control" id="costcenter" placeholder="Cost Center" ng-model="reservation.costCenter")
+
+          div.row
+            div.col-sm-6
+              div.form-group
+                label(for="budgetperiod") Budget Period:
+                input(type="text" class="form-control" id="budgetperiod" placeholder="Budget Period" ng-model="reservation.budgetPeriod")
+
+                  
+
+    div(class="panel panel-default")
+      div.panel-heading
+        h4.panel-title Supervisor Information
+      div.panel-body
+        div.row
+          div.col-sm-6
+            div.form-group
+              label(for="supname") Name:
+              input(type="text" class="form-control" id="supname" placeholder="Supervisor Name" ng-model="reservation.supervisorName")
+
+        div.row
+          div.col-sm-6
+            div.form-group
+              label(for="supemail") Email:
+              input(type="text" class="form-control" id="supemail" placeholder="Supervisor Email" ng-model="reservation.supervisorEmail")
+
+
+
+    button(type="submit" class="btn btn-primary pull-right" ng-click="setReservationInfo()") Proceed to Checkout

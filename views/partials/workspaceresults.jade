@@ -1,0 +1,75 @@
+div(class="panel panel-default")
+ div.panel-heading
+    h1.panel-title Filter & Sort
+  div.panel-body
+    div.row
+      div.col-sm-4
+        label Sort By:
+        select(class="form-control" ng-model="sortExpression")
+          option(value="") Any
+          option(value="amRate") AM Rate
+          option(value="pmRate") PM Rate
+      div.col-sm-4
+        label Workspace Type:
+        select(class="form-control" ng-model="query.type")
+          option(value="") Any
+          option(value="Cubicle") Cubicle
+          option(value="Office") Office
+          option(value="Conference Room") Conference room
+      div.col-sm-4
+        label Location:
+        select(class="form-control" ng-model="query.building")
+          option(value="") Any
+          option(value="Forum Place") Forum Place
+          option(value="Keystone") Keystone Building
+          option(value="Finance") Finance Building
+
+
+div(class="panel panel-default")
+  div.panel-heading
+    h3.panel-title Search Results
+  div.panel-body
+    div(class="panel panel-default" ng-repeat="workspace in workspaces | orderBy: sortExpression | filter: query")
+      div.panel-heading
+        | <h3 class="panel-title">{{workspace._id}}<span class="pull-right panel-title">{{workspace.type}}</span></h3>
+      div.panel-body
+        div.row
+          div.col-sm-4
+            div.list-group
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Building</strong>
+                p.list-group-item-text {{workspace.building}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Floor</strong>
+                p.list-group-item-text {{workspace.floor}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>Room</strong>
+                p.list-group-item-text {{workspace.room}}
+
+
+          div.col-sm-4
+            div.list-group
+              a.list-group-item
+                h4.list-group-item-heading <strong>Agency</strong>
+                p.list-group-item-text {{workspace.agency}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>AM Rate</strong>
+                p.list-group-item-text {{workspace.amRate | currency}}
+
+              a.list-group-item
+                h4.list-group-item-heading <strong>PM Rate</strong>
+                p.list-group-item-text {{workspace.pmRate | currency}}
+
+          div.col-sm-4
+            div.list-group
+              a(class="list-group-item list-group-item")
+                h4.list-group-item-heading <strong>Inventory</strong>
+              a(class="list-group-item" ng-repeat="item in workspace.inventory")
+                p(class="list-group-item-text") {{item}}
+
+        a(class="btn btn-md btn-primary pull-right" ng-click="pickSpace(workspace)" href="/bookingform" role="button") Book it! &raquo
+    

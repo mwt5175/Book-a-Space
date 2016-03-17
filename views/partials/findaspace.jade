@@ -1,0 +1,31 @@
+div(class="panel panel-default")
+  div.panel-heading
+    h4.panel-title Find a Space
+  div.panel-body
+    div(class="panel panel-default")
+      div.panel-heading
+        h5.panel-title Type of Space
+      div.panel-body
+        div(class="row")
+          div(class="btn-group col-md-12")
+            | <label class="btn btn-success" ng-model="type" btn-radio="'Conference Room'">Conference Room</label>
+            | <label class="btn btn-success" ng-model="type" btn-radio="'Office'">Office</label>
+            | <label class="btn btn-success" ng-model="type" btn-radio="'Cubicle'">Cubicle</label>
+
+    div(class="panel panel-default")
+      div.panel-heading
+        h5.panel-title Reservation Date
+      div.panel-body
+        div.row
+          div.col-md-6
+            p.input-group
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-| text="Close" />
+              span.input-group-btn
+                | <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i> 
+                | </button>
+
+              select.form-control(ng-model="block")
+                option(value="AM" selected) AM
+                option(value="PM") PM
+
+    a(class="btn btn-lg btn-primary pull-right" ng-click="findSpaces()" role="button") Find Spaces &raquo
